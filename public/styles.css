@@ -33,6 +33,10 @@ h2 {
 li {
   list-style-type: none;
   border: 2px solid lightblue;
-  width: 25%;
+  width: 20%;
   float: left;
+}
+
+li span {
+  padding: 20px;
 }

@@ -1,42 +1,44 @@
-var favorite = document.getElementsByClassName("fa-star-o");
+var submit = document.getElementsByClassName('btn')
+var edit = document.getElementsByClassName("fa-pencil");
 var trash = document.getElementsByClassName("fa-trash");
 
-Array.from(favorite).forEach(function(element) {
+Array.from(edit).forEach(function(element) {
       element.addEventListener('click', function(){
-        const name = this.parentNode.parentNode.childNodes[1].innerText
-        const msg = this.parentNode.parentNode.childNodes[3].innerText
-        const favorite = parseFloat(this.parentNode.parentNode.childNodes[5].innerText)
-        fetch('messages', {
+        const name = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].innerText
+        const msg = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[3].innerText
+        const input = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[5].value
+        console.log(input)
+
+        fetch('update', {
           method: 'put',
-          headers: {'Content-Type': 'application/json'},
+          headers: {
+            'Content-Type': 'application/json'
+          },
           body: JSON.stringify({
-            'name': name,
-            'msg': msg,
-            'favorite':favorite
+            name, 
+            msg,
+            input
           })
+        }).then(function (response) {
+          window.location.reload()
         })
-        .then(response => {
-          if (response.ok) return response.json()
-        })
-        .then(data => {
-          console.log(data)
-          window.location.reload(true)
-        })
-      });
+
+    });
 });
+
 
 Array.from(trash).forEach(function(element) {
       element.addEventListener('click', function(){
-        const name = this.parentNode.parentNode.childNodes[1].innerText
-        const msg = this.parentNode.parentNode.childNodes[3].innerText
-        fetch('messages', {
+        const name = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].innerText
+        const msg = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[3].innerText
+        fetch('delete', {
           method: 'delete',
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            'name': name,
-            'msg': msg
+            name,
+            msg
           })
         }).then(function (response) {
           window.location.reload()
