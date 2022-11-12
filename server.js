@@ -5,7 +5,7 @@ const MongoClient = require('mongodb').MongoClient
 
 var db, collection;
 
-const url = "mongodb+srv://pet:demo@cluster0.bauq66a.mongodb.net/?retryWrites=true&w=majority";
+const url = "mongodb+srv://demo:demo@cluster0.klxjbfv.mongodb.net/?retryWrites=true&w=majority";
 const dbName = "sydnei-apps";
 
 app.listen(3000, () => {
